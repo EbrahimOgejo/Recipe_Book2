@@ -1,48 +1,14 @@
 {
-  "recipes": [
+  "favorites": [
     {
-      "id": 1,
-      "title": "Ugali",
-      "category": "Main Dish",
-      "area": "Kenyan",
-      "image": "https://www.shutterstock.com/shutterstock/photos/1642152280/display_1500/stock-photo-african-maize-porridge-called-ugali-in-transparent-small-bowl-1642152280.jpg",
-      "ingredients": [
-        "2 cups maize flour",
-        "3 cups water"
-      ],
-      "instructions": "Boil water. Gradually add maize flour while stirring continuously until thick. Cook for 5 minutes and serve hot."
-    },
-    {
-      "id": 2,
-      "title": "Sukuma Wiki",
-      "category": "Vegetable",
-      "area": "Kenyan",
-      "image": "https://www.shutterstock.com/shutterstock/photos/2630449939/display_1500/stock-photo-food-meals-dishes-cuisines-cookery-bites-goodies-aliment-eatable-kenya-east-africa-2630449939.jpg",
-      "ingredients": [
-        "1 bunch kale",
-        "1 onion",
-        "2 tomatoes",
-        "Salt",
-        "Cooking oil"
-      ],
-      "instructions": "Fry onions and tomatoes. Add chopped kale and cook until soft. Add salt and serve."
-    },
-    {
-      "id": 3,
-      "title": "Kenyan Pilau",
-      "category": "Rice",
-      "area": "Kenyan",
-      "image": "https://www.shutterstock.com/shutterstock/photos/483368242/display_1500/stock-photo-lamb-madghout-popular-arabic-rice-with-meat-during-ramadan-483368242.jpg",
-      "ingredients": [
-        "2 cups rice",
-        "Pilau masala",
-        "Beef",
-        "Onions",
-        "Garlic",
-        "Ginger"
-      ],
-      "instructions": "Fry spices and beef. Add rice and water. Cook until rice is ready."
+      "id": 52772,
+      "strMeal": "Teriyaki Chicken Casserole",
+      "strCategory": "Chicken",
+      "strArea": "Japanese",
+      "strMealThumb": "https://www.themealdb.com/images/media/meals/wvpsxx1468256321.jpg",
+      "strInstructions": "Preheat oven to 350°F...",
+      "strIngredient1": "soy sauce",
+      "strMeasure1": "3/4 cup"
     }
-  ],
-  "favorites": []
+  ]
 }

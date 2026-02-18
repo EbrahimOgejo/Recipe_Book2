@@ -1,21 +1,28 @@
 import { useEffect, useState } from "react";
+import RecipeCard from "../components/RecipeCard.jsx";
 
 function Favorites() {
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:3001/favorites")
-      .then(res => res.json())
-      .then(setFavorites);
+      .then((res) => res.json())
+      .then((data) => setFavorites(data))
+      .catch((err) => console.error(err));
   }, []);
 
   return (
-    <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-      {favorites.map(fav => (
-        <div key={fav.id} className="shadow p-4">
-          <h3>{fav.strMeal || fav.title}</h3>
+    <div className="container">
+      <h2 style={{ textAlign: "center", marginBottom: "20px" }}>Your Favorites</h2>
+      {favorites.length === 0 ? (
+        <p style={{ textAlign: "center" }}>You have no favorite recipes yet.</p>
+      ) : (
+        <div className="horizontal-arrangement">
+          {favorites.map((recipe) => (
+            <RecipeCard key={recipe.idMeal} recipe={recipe} />
+          ))}
         </div>
-      ))}
+      )}
     </div>
   );
 }

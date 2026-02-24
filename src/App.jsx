@@ -1,8 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
-import Home from "./pages/Home.jsx";
-import RecipeDetails from "./pages/RecipeDetails.jsx";
-import Favorites from "./pages/Favorites.jsx";
+import Home from "./Pages/Home.jsx";
+import RecipeDetails from "./Pages/RecipeDetails.jsx";
+import Favorites from "./Pages/Favorites.jsx";
+import AddRecipe from "./Pages/AddRecipe.jsx";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/recipe/:id" element={<RecipeDetails />} />
         <Route path="/favorites" element={<Favorites />} />
+        <Route path="/add-recipe" element={<AddRecipe />} />
       </Routes>
     </>
   );

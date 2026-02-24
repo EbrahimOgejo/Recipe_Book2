@@ -160,6 +160,27 @@ body {
   transition: all 0.3s ease;
 }
 
+.favorites-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.favorites-badge {
+  min-width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  background: #ffeb3b;
+  color: #1e88e5;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+}
+
 .nav-links a:hover {
   text-decoration: underline;
   color: #ffeb3b;

@@ -15,6 +15,15 @@ function RecipeDetails() {
 
   // Fetch recipe by id from API
   useEffect(() => {
+    if (String(id).startsWith("local-")) {
+      const localRecipes = JSON.parse(localStorage.getItem("userRecipes")) || [];
+      const foundRecipe = localRecipes.find(
+        (localRecipe) => String(localRecipe.idMeal) === String(id)
+      );
+      setRecipe(foundRecipe || null);
+      return;
+    }
+
     fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
       .then((res) => res.json())
       .then((data) => setRecipe(data.meals[0]))
@@ -25,6 +34,10 @@ function RecipeDetails() {
 
   // Ingredients
   const getIngredients = () => {
+    if (String(id).startsWith("local-")) {
+      return [];
+    }
+
     const ingredients = [];
     for (let i = 1; i <= 20; i++) {
       const ingredient = recipe[`strIngredient${i}`];
@@ -48,7 +61,8 @@ function RecipeDetails() {
 
   // Favorites toggle
   const toggleFavorite = () => {
-    const isFav = favorites.some((fav) => fav.idMeal === recipe.idMeal);
+    const recipeId = String(recipe.idMeal);
+    const isFav = favorites.some((fav) => String(fav.idMeal) === recipeId);
 
     if (isFav) {
       Swal.fire({
@@ -61,10 +75,11 @@ function RecipeDetails() {
       }).then((result) => {
         if (result.isConfirmed) {
           const updatedFavorites = favorites.filter(
-            (fav) => fav.idMeal !== recipe.idMeal
+            (fav) => String(fav.idMeal) !== recipeId
           );
           setFavorites(updatedFavorites);
           localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+          window.dispatchEvent(new Event("favorites-updated"));
           Swal.fire("Removed!", `${recipe.strMeal} was removed.`, "success");
         }
       });
@@ -72,6 +87,7 @@ function RecipeDetails() {
       const updatedFavorites = [...favorites, recipe];
       setFavorites(updatedFavorites);
       localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+      window.dispatchEvent(new Event("favorites-updated"));
       Swal.fire(
         "Added!",
         `${recipe.strMeal} was added to favorites.`,
@@ -80,7 +96,9 @@ function RecipeDetails() {
     }
   };
 
-  const isFavorite = favorites.some((fav) => fav.idMeal === recipe.idMeal);
+  const isFavorite = favorites.some(
+    (fav) => String(fav.idMeal) === String(recipe.idMeal)
+  );
 
   return (
     <div className="container details">
@@ -109,11 +127,15 @@ function RecipeDetails() {
       </button>
 
       <h3>Ingredients:</h3>
-      <ul>
-        {getIngredients().map((ing, idx) => (
-          <li key={idx}>{ing}</li>
-        ))}
-      </ul>
+      {getIngredients().length > 0 ? (
+        <ul>
+          {getIngredients().map((ing, idx) => (
+            <li key={idx}>{ing}</li>
+          ))}
+        </ul>
+      ) : (
+        <p>No ingredients listed for this recipe.</p>
+      )}
 
       <h3>Instructions:</h3>
       <ul>

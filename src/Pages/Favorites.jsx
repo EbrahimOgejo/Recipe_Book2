@@ -5,10 +5,8 @@ function Favorites() {
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/favorites")
-      .then((res) => res.json())
-      .then((data) => setFavorites(data))
-      .catch((err) => console.error(err));
+    const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    setFavorites(savedFavorites);
   }, []);
 
   return (
@@ -19,7 +17,11 @@ function Favorites() {
       ) : (
         <div className="horizontal-arrangement">
           {favorites.map((recipe) => (
-            <RecipeCard key={recipe.idMeal} recipe={recipe} />
+            <RecipeCard
+              key={recipe.idMeal}
+              recipe={recipe}
+              onFavoritesChange={setFavorites}
+            />
           ))}
         </div>
       )}

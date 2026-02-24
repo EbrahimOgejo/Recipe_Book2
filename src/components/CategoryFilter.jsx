@@ -5,10 +5,14 @@ function CategoryFilter({ setCategory }) {
       className="filter"
     >
       <option value="All">All</option>
-      <option value="Breakfast">Breakfast</option>
-      <option value="Lunch">Lunch</option>
-      <option value="Dinner">Dinner</option>
+      <option value="Side">Side</option>
+      <option value="Vegetarian">Vegetarian</option>
+      <option value="Beef">Beef</option>
       <option value="Dessert">Dessert</option>
+      <option value="Chicken">Chicken</option>
+      <option value="Pasta">Pasta</option>
+      <option value="Seafood">Seafood</option>
+
     </select>
   );
 }
